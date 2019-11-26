@@ -1,0 +1,14 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+double counter=0;
+int main()
+{
+double summ=0;
+int n;
+cin>>n;
+for(int i=1;i<n;i++){
+    summ+=(double)pow(-1,(i-1))/(double)i;
+    }
+    cout<<summ;
+}
