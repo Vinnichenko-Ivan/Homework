@@ -1,0 +1,14 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+double counter=0;
+int main()
+{
+double a,summ=0,buff;
+cin>>a;
+for(int i=0;i<a;i++){
+    cin>>buff;
+    summ+=buff;
+    }
+    cout<<summ/a;
+}
