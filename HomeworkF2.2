@@ -1,0 +1,64 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+double counter=0;
+int main()
+{
+int n,m;
+cin>>n;
+string command;
+vector<int> mass(n,0);
+for(int i=0;i<n;i++){
+    cin>>mass[i];
+    }
+cin>>m;
+    for(int i=0;i<m;i++){
+    cin>>command;
+    if(command=="rsq"){
+        int  x,y,summ=0;
+        cin>>x>>y;
+        x--;
+        
+        for(;x<y;x++){
+            summ+=mass[x];
+            }
+        cout<<summ<<endl;
+        }
+    if(command=="update"){
+        int  x,y,z;
+        cin>>x>>y>>z;
+        x--;
+
+        for(;x<y;x++){
+            mass[x]=z;
+        }
+        }
+        if(command=="rmq"){
+        int  x,y,mini=100000;
+        cin>>x>>y;
+        x--;
+
+        for(;x<y;x++){
+            mini=min(mini,mass[x]);
+        }
+        cout<<mini<<endl;
+        }
+        if(command=="add"){
+        int  x,y,z=100000;
+        cin>>x>>y>>z;
+        x--;
+
+        for(;x<y;x++){
+            mass[x]+=z;
+        }
+        }
+        if(command=="get"){
+        int  x;
+        cin>>x;
+        x--;
+        cout<<mass[x];
+        }
+    }
+}
