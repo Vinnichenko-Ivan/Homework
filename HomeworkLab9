@@ -9,19 +9,19 @@ Write your code in this editor and press "Run" button to compile and execute it.
 #include<cmath>
 using namespace std;
 int main(){
-    double mass[100][20][75];
-    for(int i=0;i<100;i++){
-        for(int j=0;j<20;j++){
-            for(int k=0;k<75;k++){
-                mass[i][j][k]=k*cos(i+j*2)+j*sin(i*i/(k+1));              
+    double mass[101][21][76];
+    for(int i=1;i<100;i++){
+        for(int j=1;j<20;j++){
+            for(int k=1;k<75;k++){
+                mass[i][j][k]=k*cos(i+j*2)+j*sin(i*i/(k));              
             }
         }
     }
     long double counter=0;
     long int counterS=0,counterP=0;
-    for(int i=0;i<100;i++){
-        for(int j=0;j<20;j++){
-            for(int l=0;l<75;l++){
+    for(int i=1;i<100;i++){
+        for(int j=1;j<20;j++){
+            for(int l=1;l<75;l++){
             if(mass[i][j][l]>=0){
             counter+=mass[i][j][l];
             counterP++;
