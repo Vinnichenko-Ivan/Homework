@@ -1,0 +1,19 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+double f(double x){
+  return x-sin(x)-2*M_PI*(1-0.8);
+}
+int main() {
+  double a=0,b=M_PI,c=(a+b)/2,e=0.001,r=0.2;
+  while(b-a>e){
+    c=(a+b)/2;
+    if(f(c)*f(a)>0){
+     a=c;
+    }
+    else{
+     b=c;
+    }
+  }
+  cout<<<<r+r*cos(c/2)<<endl;
+}
