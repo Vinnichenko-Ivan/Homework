@@ -1,0 +1,42 @@
+int x=10,y=10,g=1,Ux=5,Uy=0,t=1;
+void setup() {
+  size(640, 360);
+  background(0);
+  noStroke();
+  
+}
+
+void draw() {
+    
+
+clear();
+fill(255, 255, 255);
+ background(23);
+ellipse(x, y, 100,100);
+ellipse(x, y-50, 60,60);
+fill(0, 0, 0);
+ellipse(x+10, y-55, 10,10);
+ellipse(x-10, y-55, 10,10);
+x=x+Ux;
+y=y+Uy+g;
+Ux=Ux;
+Uy=Uy+g;
+if(y>340){
+Uy=-Uy;
+y=340;
+}
+if(x>630){
+Ux=-Ux;
+x=630;
+}
+if(x<0){
+Ux=-Ux;
+x=0;
+}
+t=millis();
+}
+void mousePressed() {
+x=mouseX;
+y=mouseY;
+}
+
