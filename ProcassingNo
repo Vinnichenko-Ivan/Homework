@@ -1,14 +1,18 @@
-float x=10, y=10, g=1,Ax=0.5, Ux=5, Uy=0, t=1;
+float x=10, y=10, g=1,Ax=0.1, Ux=0, Uy=0, t=1,R,G,B;
+boolean cleared=true;
 void setup() {
   size(1800, 1000);
   background(0);
   noStroke();
+  //frameRate(100);
 }
 
 void draw() {
+  if(cleared){
   clear();
-  fill(255, 255, 255);
-  background(23);
+  }
+  fill(R, G, B);
+  //background(23);
   ellipse(x, y, 20, 20);
   //ellipse(x, y-50, 60, 60);
   //fill(0, 0, 0);
@@ -19,20 +23,31 @@ void draw() {
   Ux=Ux+Ax;
   Uy=Uy+g;
   if (y>height) {
+    R=random(255);
+    G=random(255);
+    B=random(255);
     Uy=-Uy;
     y=height;
   }
   if (x>width) {
+    R=random(255);
+    G=random(255);
+    B=random(255);
     Ux=-Ux;
     x=width;
   }
   if (x<0) {
+    R=random(255);
+    G=random(255);
+    B=random(255);
     Ux=-Ux;
     x=0;
   }
   t=millis();
 }
+
 void mousePressed() {
+  cleared=!cleared;
   x=mouseX;
   y=mouseY;
 }
