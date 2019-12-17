@@ -1,0 +1,38 @@
+float x=10, y=10, g=1,Ax=0.5, Ux=5, Uy=0, t=1;
+void setup() {
+  size(1800, 1000);
+  background(0);
+  noStroke();
+}
+
+void draw() {
+  clear();
+  fill(255, 255, 255);
+  background(23);
+  ellipse(x, y, 20, 20);
+  //ellipse(x, y-50, 60, 60);
+  //fill(0, 0, 0);
+  //ellipse(x+10, y-55, 10, 10);
+  //ellipse(x-10, y-55, 10, 10);
+  x=x+Ux;
+  y=y+Uy+g;
+  Ux=Ux+Ax;
+  Uy=Uy+g;
+  if (y>height) {
+    Uy=-Uy;
+    y=height;
+  }
+  if (x>width) {
+    Ux=-Ux;
+    x=width;
+  }
+  if (x<0) {
+    Ux=-Ux;
+    x=0;
+  }
+  t=millis();
+}
+void mousePressed() {
+  x=mouseX;
+  y=mouseY;
+}
