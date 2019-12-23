@@ -1,42 +1,82 @@
-int x=10,y=10,g=1,Ux=5,Uy=0,t=1;
+
+float x=10, y=10, g=1, Ax=0, Ux=100, Uy=0, t=1, R, G, B, U, k=0.0005, alpha=0, Uxo, Uyo;
+boolean cleared=true;
 void setup() {
-  size(640, 360);
+  size(1800, 1000);
   background(0);
   noStroke();
-  
+  //frameRate(10);
 }
 
 void draw() {
-    
+  Uxo=Ux;
+  Uyo=Uy;
+  if (cleared) {
+    clear();
+  }
+  fill(R, G, B);
+  //background(23);
+  ellipse(x, y, 20, 20);
+  //ellipse(x, y-50, 60, 60);
+  //fill(0, 0, 0);
+  //ellipse(x+10, y-55, 10, 10);
+  //ellipse(x-10, y-55, 10, 10);
+  //U=sqrt(Ux^2+Uy^2);
+  if (Ux==0) {
+    U=Uy;
+  } else if (Uy==0) {
+    U=Ux;
+  } else {
+    alpha=atan(Uy/Ux);
+  }
 
-clear();
-fill(255, 255, 255);
- background(23);
-ellipse(x, y, 100,100);
-ellipse(x, y-50, 60,60);
-fill(0, 0, 0);
-ellipse(x+10, y-55, 10,10);
-ellipse(x-10, y-55, 10,10);
-x=x+Ux;
-y=y+Uy+g;
-Ux=Ux;
-Uy=Uy+g;
-if(y>340){
-Uy=-Uy;
-y=340;
+  U=sqrt(Ux*Ux+Uy*Uy);
+  if (abs(U)>1) {
+    U=U-U*U*k;
+  }
+  if (abs(U)<1) {
+    U=U-U*k;
+  }
+  Ux=U*cos(alpha);
+  Uy=U*sin(alpha);
+  if (Ux*Uxo<0) {
+    Ux=-Ux;
+  }
+  if (Uy*Uyo<0) {
+    Uy=-Uy;
+  }
+  //Ux=
+  println(alpha);
+  x=x+Ux;
+  y=y+Uy+g;
+  Ux=Ux+Ax;
+  Uy=Uy+g;
+  if (y>height) {
+    R=random(255);
+    G=random(255);
+    B=random(255);
+    Uy=-Uy;
+    y=height;
+  }
+  if (x>width) {
+    R=random(255);
+    G=random(255);
+    B=random(255);
+    Ux=-Ux;
+    x=width;
+  }
+  if (x<0) {
+    R=random(255);
+    G=random(255);
+    B=random(255);
+    Ux=-Ux;
+    x=0;
+  }
+  t=millis();
 }
-if(x>630){
-Ux=-Ux;
-x=630;
-}
-if(x<0){
-Ux=-Ux;
-x=0;
-}
-t=millis();
-}
+
 void mousePressed() {
-x=mouseX;
-y=mouseY;
+  cleared=!cleared;
+  x=mouseX;
+  y=mouseY;
 }
-
