@@ -1,15 +1,17 @@
-float x=10, y=10, g=1,Ax=0.1, Ux=0, Uy=0, t=1,R,G,B;
+float x=10, y=10, g=1, Ax=0, Ux=10, Uy=0, t=1, R=random(255), G=random(255), B=random(255), U, k=0.0005, alpha=0, Uxo, Uyo;
 boolean cleared=true;
 void setup() {
   size(1800, 1000);
   background(0);
   noStroke();
-  //frameRate(100);
+  frameRate(60);
 }
 
 void draw() {
-  if(cleared){
-  clear();
+  Uxo=Ux;
+  Uyo=Uy;
+  if (cleared) {
+    clear();
   }
   fill(R, G, B);
   //background(23);
@@ -18,7 +20,33 @@ void draw() {
   //fill(0, 0, 0);
   //ellipse(x+10, y-55, 10, 10);
   //ellipse(x-10, y-55, 10, 10);
-  x=x+Ux;
+  //U=sqrt(Ux^2+Uy^2);
+  if (Ux==0) {
+    U=Uy;
+  } else if (Uy==0) {
+    U=Ux;
+  } else {
+    alpha=atan(Uy/Ux);
+  }
+
+  U=sqrt(Ux*Ux+Uy*Uy);
+  if (abs(U)>1) {
+    U=U-U*U*k;
+  }
+  if (abs(U)<1) {
+    U=U-U*k;
+  }
+  Ux=U*cos(alpha);
+  Uy=U*sin(alpha);
+  if (Ux*Uxo<0) {
+    Ux=-Ux;
+  }
+  if (Uy*Uyo<0) {
+    Uy=-Uy;
+  }
+  //Ux=
+  println(alpha);
+  x=x+Ux+Ax;
   y=y+Uy+g;
   Ux=Ux+Ax;
   Uy=Uy+g;
@@ -45,7 +73,22 @@ void draw() {
   }
   t=millis();
 }
-
+void keyPressed() {
+  if (key == CODED) {
+    if (keyCode == UP) {
+    Uy-=10;
+    } else if (keyCode == DOWN) {
+    Uy+=10;
+    } 
+        if (keyCode == LEFT) {
+    Ux-=10;
+    } else if (keyCode == RIGHT) {
+    Ux+=10;
+    } 
+  } else {
+    
+  }
+}
 void mousePressed() {
   cleared=!cleared;
   x=mouseX;
