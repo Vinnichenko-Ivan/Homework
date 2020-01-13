@@ -1,0 +1,21 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+double dt=0.1,k=0.005,g=10,v=0,a=0;
+double t=0,h=0,l=0,Uy=v*sin(a),Ux=v*cos(a),Uk=0;
+int main() {
+
+  for(int i=0;i<10;i++)
+  {
+if(i!=0){
+  Uk=k*sqrt(Ux*Ux+Uy*Uy);
+}
+    t=t+dt;
+    h=h+Uy*dt;
+    l=l+Ux*dt;
+
+    Uy=Uy-(g+Uk*Uy)*dt;
+    Ux=Ux-Uk*Ux*dt;
+  }
+  cout<<" time: "<<t<<" h: "<<h<<" l: "<<l<<" Uy: "<<Uy<<" Ux: "<<Ux<<" Uk: "<<Uk;
+}
